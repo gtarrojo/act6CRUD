@@ -22,20 +22,25 @@ export class UsersListComponent {
   }
 
   async loadUsers() {
-    let response: IResponse = await this.userService.getByPage(
-      this.currentPage
-    );
+    try {
+      let response: IResponse = await this.userService.getByPage(
+        this.currentPage
+      );
 
-    if (this.currentPage === 1) {
-      this.arrUsers = response.results;
-      this.totalUsers = response.total;
-    } else {
-      this.arrUsers = [...this.arrUsers, ...response.results];
+      if (this.currentPage === 1) {
+        this.arrUsers = response.results;
+        this.totalUsers = response.total;
+      } else {
+        this.arrUsers = [...this.arrUsers, ...response.results];
+      }
+
+      this.allUsersLoaded =
+        response.total === this.arrUsers.length ? true : false;
+
+      this.currentPage++;
+    } catch (error: unknown) {
+      console.log(error);
+      alert('Vuelva a intentarlo en unos minutos.');
     }
-
-    this.allUsersLoaded =
-      response.total === this.arrUsers.length ? true : false;
-
-    this.currentPage++;
   }
 }

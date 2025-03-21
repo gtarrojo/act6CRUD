@@ -16,7 +16,8 @@ export class UsersService {
     return lastValueFrom(this.httpClient.get<IResponse>(url));
   }
 
-  // getById(id:  ) {
-
-  // }
+  getById(id: string) {
+    const url = this.endPoint + '/' + id;
+    return lastValueFrom(this.httpClient.get<IResponse>(url));
+  }
 }
