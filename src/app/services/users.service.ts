@@ -10,7 +10,7 @@ export class UsersService {
   private endPoint: string = 'https://peticiones.online/api/users';
   private httpClient = inject(HttpClient);
 
-  getAll(url: string, page: number = 1) {
+  getPage(url: string, page: number) {
     if (!url) {
       url = this.endPoint + '?page=' + page;
     }

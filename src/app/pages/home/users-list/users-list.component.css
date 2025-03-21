@@ -1,3 +1,7 @@
 .medio {
   margin: 0 auto;
 }
+
+.loaded {
+  display: none;
+}

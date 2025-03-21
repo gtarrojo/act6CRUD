@@ -9,6 +9,12 @@
     }
   </div>
   <div class="text-center my-4">
-    <button class="btn btn-outline-primary px-4 py-2">Cargar todos</button>
+    <button
+      class="btn btn-outline-primary px-4 py-2"
+      (click)="loadUsers()"
+      [class.loaded]="allUsersLoaded"
+    >
+      Cargar todos
+    </button>
   </div>
 </section>
