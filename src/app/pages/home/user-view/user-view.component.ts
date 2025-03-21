@@ -11,8 +11,23 @@ import { ButtonsComponent } from '../../../shared/buttons/buttons.component';
 })
 export class UserViewComponent {
   @Input() idUser: string = '';
-  user: IUser | any;
+  user: IUser = {
+    _id: '',
+    id: 0,
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    image: '',
+    password: '',
+  };
   userService = inject(UsersService);
 
-  ngOnInit() {}
+  async ngOnInit() {
+    try {
+      this.user = await this.userService.getById(this.idUser);
+    } catch (error: any) {
+      console.log(error.error);
+    }
+  }
 }

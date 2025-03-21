@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { IResponse } from '../interfaces/iresponse.interface';
+import { IUser } from '../interfaces/iuser.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +19,6 @@ export class UsersService {
 
   getById(id: string) {
     const url = this.endPoint + '/' + id;
-    return lastValueFrom(this.httpClient.get<IResponse>(url));
+    return lastValueFrom(this.httpClient.get<IUser>(url));
   }
 }
