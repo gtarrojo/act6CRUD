@@ -22,8 +22,7 @@ export class UsersListComponent {
   }
 
   async loadUsers() {
-    let response: IResponse = await this.userService.getPage(
-      '',
+    let response: IResponse = await this.userService.getByPage(
       this.currentPage
     );
 
