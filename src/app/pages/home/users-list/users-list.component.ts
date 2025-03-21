@@ -34,11 +34,8 @@ export class UsersListComponent {
       this.arrUsers = [...this.arrUsers, ...response.results];
     }
 
-    if (response.total === this.arrUsers.length) {
-      this.allUsersLoaded = true;
-    } else {
-      this.allUsersLoaded = false;
-    }
+    this.allUsersLoaded =
+      response.total === this.arrUsers.length ? true : false;
 
     this.currentPage++;
   }
