@@ -1,1 +1,14 @@
-<p>users-list works!</p>
+<section class="container">
+  <div
+    class="row row-cols-sm-1 row-cols-md-4 d-flex justify-content-center align-items-center"
+  >
+    @for (user of arrUsers; track user._id) {
+    <article class="col">
+      <app-user-card [userC]="user"></app-user-card>
+    </article>
+    }
+  </div>
+  <div class="text-center my-4">
+    <button class="btn btn-outline-primary px-4 py-2">Cargar todos</button>
+  </div>
+</section>
