@@ -13,12 +13,17 @@
   - /newuser: donde ser cargará un formulario que dará de alta un usuario siguiendo el patron del api de creater user.
   - /updateuser/1: se cargará reutilizando el formulario de registro los datos del usuario a actualizar para que se pueda actualizar los datos y mandárselos al api.
 
-- Componentes
+- Pages
 
   - home
+  - usersList
   - userView
   - userForm
 
   - SHARED
+
     - nav
     - buttons
+
+  - COMPONENTS
+    - userCard

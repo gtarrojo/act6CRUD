@@ -11,7 +11,9 @@ export class UsersService {
   private httpClient = inject(HttpClient);
 
   getAll(url: string, page: number = 1) {
-    url = url + '?page=' + page;
+    if (!url) {
+      url = this.endPoint + '?page=' + page;
+    }
     return lastValueFrom(this.httpClient.get<IResponse>(url));
   }
 }
