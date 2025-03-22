@@ -6,7 +6,9 @@
     Ver detalle </a
   >}
 
-  <a class="btn btn-success btn-sm"> Actualizar </a>
+  <a class="btn btn-success btn-sm" [routerLink]="['update', user._id]">
+    Actualizar
+  </a>
 
   <a class="btn btn-danger btn-sm" (click)="deleteUser(user._id)"> Borrar </a>
 </div>

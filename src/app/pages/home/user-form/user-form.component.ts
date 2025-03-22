@@ -1,5 +1,10 @@
 import { Component, inject, Input } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { UsersService } from '../../../services/users.service';
 import { Router } from '@angular/router';
 import { IUser } from '../../../interfaces/iuser.interface';
@@ -25,6 +30,7 @@ export class UserFormComponent {
   };
   usersForm: FormGroup = new FormGroup({}, []);
   title: string = 'Registrar';
+  button: string = 'Registrar';
   userService = inject(UsersService);
   router = inject(Router);
 
@@ -34,6 +40,7 @@ export class UserFormComponent {
       try {
         this.user = await this.userService.getById(this.idUser);
         this.title = 'Actualizar';
+        this.button = 'Actualizar';
       } catch (msg: any) {
         toast.error(msg.error);
       }
@@ -41,10 +48,26 @@ export class UserFormComponent {
 
     this.usersForm = new FormGroup(
       {
-        nombre: new FormControl(this.user.first_name || '', []),
-        apellidos: new FormControl(this.user.last_name || '', []),
-        email: new FormControl(this.user.email || '', []),
-        imagen: new FormControl(this.user.image || '', []),
+        nombre: new FormControl(this.user.first_name || '', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(50),
+        ]),
+        apellidos: new FormControl(this.user.last_name || '', [
+          Validators.required,
+          Validators.minLength(2),
+          Validators.maxLength(100),
+        ]),
+        email: new FormControl(this.user.email || '', [
+          Validators.required,
+          Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/),
+        ]),
+        imagen: new FormControl(this.user.image || '', [
+          Validators.required,
+          Validators.pattern(
+            /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?$/
+          ),
+        ]),
       },
       []
     );
