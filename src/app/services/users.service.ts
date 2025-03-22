@@ -21,4 +21,9 @@ export class UsersService {
     const url = this.endPoint + '/' + id;
     return lastValueFrom(this.httpClient.get<IUser>(url));
   }
+
+  deleteById(id: string) {
+    const url = this.endPoint + '/' + id;
+    return lastValueFrom(this.httpClient.delete<IUser>(url));
+  }
 }
