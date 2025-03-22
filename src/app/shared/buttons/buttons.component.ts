@@ -9,5 +9,15 @@ import { IUser } from '../../interfaces/iuser.interface';
   styleUrl: './buttons.component.css',
 })
 export class ButtonsComponent {
-  @Input() user!: IUser;
+  @Input() user: IUser = {
+    _id: '',
+    id: 0,
+    first_name: '',
+    last_name: '',
+    username: '',
+    email: '',
+    image: '',
+    password: '',
+  };
+  @Input() atView: Boolean = false;
 }

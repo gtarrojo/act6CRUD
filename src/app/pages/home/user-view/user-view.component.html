@@ -11,7 +11,7 @@
       <h4 class="mb-2">{{ user.first_name }} {{ user.last_name }}</h4>
       <p class="mb-1"><strong>Usuario:</strong> {{ user.username }}</p>
       <p class="mb-0"><strong>Email:</strong> {{ user.email }}</p>
-      <app-buttons class="my-4"></app-buttons>
+      <app-buttons [atView]="true" class="my-4"></app-buttons>
     </div>
   </div>
 </section>

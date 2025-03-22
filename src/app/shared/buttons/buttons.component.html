@@ -1,7 +1,10 @@
 <div class="d-flex gap-2">
+  @if(atView) {
+  <a class="btn btn-primary btn-sm" [routerLink]="['users']"> Volver listado </a
+  >} @else {
   <a class="btn btn-primary btn-sm" [routerLink]="['user', user._id]">
-    Ver detalle
-  </a>
+    Ver detalle </a
+  >}
 
   <a class="btn btn-success btn-sm"> Actualizar </a>
 
