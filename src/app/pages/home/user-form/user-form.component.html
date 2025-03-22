@@ -15,7 +15,18 @@
                 id="nombre"
                 formControlName="nombre"
                 placeholder="Introduce tu nombre"
+                [class.invalid]="checkControl('nombre')"
+                [class.valid]="checkValid('nombre')"
               />
+              @if (checkCurrentError("nombre", "required")) {
+              <p class="error">El campo es requerido.</p>
+              }@if (checkCurrentError("nombre", "minlength")) {
+              <p class="error">
+                El nombre debe tener dos carácteres como mínimo.
+              </p>
+              } @if (checkCurrentError("nombre", "maxlength")) {
+              <p class="error">El nombre excede el máximo de carácteres.</p>
+              }
             </div>
 
             <div class="mb-3">
@@ -26,7 +37,18 @@
                 id="apellidos"
                 formControlName="apellidos"
                 placeholder="Introduce tus apellidos"
+                [class.invalid]="checkControl('apellidos')"
+                [class.valid]="checkValid('apellidos')"
               />
+              @if (checkCurrentError("apellidos", "required")) {
+              <p class="error">El campo es requerido.</p>
+              }@if (checkCurrentError("apellidos", "minlength")) {
+              <p class="error">Mínimo de 2 carácteres</p>
+              } @if (checkCurrentError("nombre", "maxlength")) {
+              <p class="error">
+                Los apellidos exceden el máximo de carácteres.
+              </p>
+              }
             </div>
 
             <div class="mb-3">
@@ -37,7 +59,14 @@
                 id="email"
                 formControlName="email"
                 placeholder="Introduce tu email"
+                [class.invalid]="checkControl('email')"
+                [class.valid]="checkValid('email')"
               />
+              @if (checkCurrentError("email", "required")) {
+              <p class="error">El campo es requerido.</p>
+              }@if (checkCurrentError("email", "pattern")) {
+              <p class="error">Debe ser un email válido.</p>
+              }
             </div>
 
             <div class="mb-3">
@@ -48,11 +77,23 @@
                 id="imagen"
                 formControlName="imagen"
                 placeholder="Introduce una URL de imagen"
+                [class.invalid]="checkControl('imagen')"
+                [class.valid]="checkValid('imagen')"
               />
+              @if (checkCurrentError("image", "required")) {
+              <p class="error">El campo es requerido.</p>
+              }@if (checkCurrentError("image", "pattern")) {
+              <p class="error">Debe ser una URL válida.</p>
+              }
             </div>
 
             <div class="d-grid">
-              <input type="submit" class="btn btn-primary" [value]="button" />
+              <input
+                type="submit"
+                class="btn btn-primary"
+                [value]="button"
+                [disabled]="!usersForm.valid"
+              />
             </div>
           </form>
         </div>

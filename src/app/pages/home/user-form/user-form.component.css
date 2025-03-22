@@ -1,0 +1,15 @@
+.invalid {
+  border: 1.5px solid red;
+  border-radius: 2px;
+}
+
+.valid {
+  border: 1.5px solid lightgreen;
+  border-radius: 2px;
+}
+
+.error {
+  font-size: 10px;
+  font-style: italic;
+  margin-top: 3px;
+}

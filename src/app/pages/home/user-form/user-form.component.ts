@@ -60,7 +60,9 @@ export class UserFormComponent {
         ]),
         email: new FormControl(this.user.email || '', [
           Validators.required,
-          Validators.pattern(/^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$/),
+          Validators.pattern(
+            /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
+          ),
         ]),
         imagen: new FormControl(this.user.image || '', [
           Validators.required,
@@ -70,6 +72,32 @@ export class UserFormComponent {
         ]),
       },
       []
+    );
+  }
+
+  checkControl(controlName: string): boolean | undefined {
+    return (
+      this.usersForm.get(controlName)?.invalid &&
+      (this.usersForm.get(controlName)?.touched ||
+        this.usersForm.get('text')?.dirty)
+    );
+  }
+
+  checkValid(controlName: string): boolean | undefined {
+    return (
+      this.usersForm.get(controlName)?.valid &&
+      (this.usersForm.get(controlName)?.touched ||
+        this.usersForm.get(controlName)?.dirty)
+    );
+  }
+
+  checkCurrentError(
+    controlName: string,
+    errorName: string
+  ): boolean | undefined {
+    return (
+      this.usersForm.get(controlName)?.hasError(errorName) &&
+      this.usersForm.get(controlName)?.touched
     );
   }
 
