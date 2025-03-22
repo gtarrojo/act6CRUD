@@ -3,6 +3,7 @@ import { Router, RouterLink } from '@angular/router';
 import { IUser } from '../../interfaces/iuser.interface';
 import { UsersService } from '../../services/users.service';
 import { toast } from 'ngx-sonner';
+import { DEFAULT_INTERPOLATION_CONFIG } from '@angular/compiler';
 
 @Component({
   selector: 'app-buttons',
@@ -26,18 +27,22 @@ export class ButtonsComponent {
   router = inject(Router);
 
   deleteUser(id: string): void {
-    toast(
-      `Vas a borrar al usuario ${this.user.first_name} ${this.user.last_name}`,
-      {
-        action: {
-          label: 'Aceptar',
-          onClick: async () => {
-            await this.usersService.deleteById(id);
-
-            this.router.navigate(['/dashboard', 'empleados']);
-          },
+    toast(`¿Borrar ${this.user.first_name} ${this.user.last_name}?`, {
+      action: {
+        label: 'Aceptar',
+        onClick: async () => {
+          await this.usersService.deleteById(id);
+          this.router.navigate(['/dashboard', 'empleados']);
         },
-      }
-    );
+      },
+      cancel: {
+        label: 'Cancelar',
+        onClick: () => {
+          console.log('User deletion cancelled');
+        },
+      },
+      duration: 7500,
+      dismissible: true,
+    });
   }
 }
