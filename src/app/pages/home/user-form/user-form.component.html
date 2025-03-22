@@ -3,16 +3,17 @@
     <div class="col-md-6">
       <div class="card">
         <div class="card-header">
-          <h4 class="mb-0">Formulario de Registro</h4>
+          <h4 class="mb-0">{{ title }} usuario</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form [formGroup]="usersForm" (ngSubmit)="submit()">
             <div class="mb-3">
               <label for="nombre" class="form-label">Nombre</label>
               <input
                 type="text"
                 class="form-control"
                 id="nombre"
+                formControlName="nombre"
                 placeholder="Introduce tu nombre"
               />
             </div>
@@ -23,6 +24,7 @@
                 type="text"
                 class="form-control"
                 id="apellidos"
+                formControlName="apellidos"
                 placeholder="Introduce tus apellidos"
               />
             </div>
@@ -33,17 +35,24 @@
                 type="email"
                 class="form-control"
                 id="email"
+                formControlName="email"
                 placeholder="Introduce tu email"
               />
             </div>
 
             <div class="mb-3">
               <label for="imagen" class="form-label">Imagen</label>
-              <input type="text" class="form-control" id="imagen" />
+              <input
+                type="text"
+                class="form-control"
+                id="imagen"
+                formControlName="imagen"
+                placeholder="Introduce una URL de imagen"
+              />
             </div>
 
             <div class="d-grid">
-              <button type="submit" class="btn btn-primary">Registrar</button>
+              <input type="submit" class="btn btn-primary" value="Registrar" />
             </div>
           </form>
         </div>
