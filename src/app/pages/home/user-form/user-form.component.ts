@@ -108,7 +108,22 @@ export class UserFormComponent {
     );
   }
 
-  submit() {
+  async submit() {
+    console.log(this.usersForm.value);
     let response: IUser | any;
+    try {
+      if (this.usersForm.value._id) {
+        response = await this.userService.update(
+          this.user._id,
+          this.usersForm.value
+        );
+      } else {
+        response = await this.userService.register(this.usersForm.value);
+      }
+      toast.success('Operación completada con éxito');
+      this.router.navigate(['home']);
+    } catch (msg: any) {
+      toast.error(msg.error);
+    }
   }
 }
