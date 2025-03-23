@@ -109,7 +109,6 @@ export class UserFormComponent {
   }
 
   async submit() {
-    console.log(this.usersForm.value);
     let response: IUser | any;
     try {
       if (this.usersForm.value._id) {
