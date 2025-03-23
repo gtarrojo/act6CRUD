@@ -18,7 +18,15 @@ import { toast } from 'ngx-sonner';
 })
 export class UserFormComponent {
   @Input() idUser: string = '';
-  usersForm: FormGroup = new FormGroup({}, []);
+  usersForm: FormGroup = new FormGroup(
+    {
+      first_name: new FormControl(''),
+      last_name: new FormControl(''),
+      email: new FormControl(''),
+      image: new FormControl(''),
+    },
+    []
+  );
   user: IUser = {
     _id: '',
     id: 0,
