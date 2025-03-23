@@ -18,6 +18,7 @@ import { toast } from 'ngx-sonner';
 })
 export class UserFormComponent {
   @Input() idUser: string = '';
+  usersForm: FormGroup = new FormGroup({}, []);
   user: IUser = {
     _id: '',
     id: 0,
@@ -28,15 +29,18 @@ export class UserFormComponent {
     image: '',
     password: '',
   };
-  usersForm: FormGroup = new FormGroup({}, []);
+
   title: string = 'Registrar';
   button: string = 'Registrar';
   userService = inject(UsersService);
   router = inject(Router);
 
-  async ngOnInit() {
+  ngOnInit() {
+    this.loadUserData();
+  }
+
+  async loadUserData() {
     if (this.idUser) {
-      // llamamos al servicio y cargamos los datos del empleado
       try {
         this.user = await this.userService.getById(this.idUser);
         this.title = 'Actualizar';
@@ -45,15 +49,18 @@ export class UserFormComponent {
         toast.error(msg.error);
       }
     }
+    this.initForm();
+  }
 
+  initForm() {
     this.usersForm = new FormGroup(
       {
-        nombre: new FormControl(this.user.first_name || '', [
+        first_name: new FormControl(this.user.first_name || '', [
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(50),
         ]),
-        apellidos: new FormControl(this.user.last_name || '', [
+        last_name: new FormControl(this.user.last_name || '', [
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(100),
@@ -64,7 +71,7 @@ export class UserFormComponent {
             /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
           ),
         ]),
-        imagen: new FormControl(this.user.image || '', [
+        image: new FormControl(this.user.image || '', [
           Validators.required,
           Validators.pattern(
             /^(https?:\/\/)?(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?$/
@@ -79,7 +86,7 @@ export class UserFormComponent {
     return (
       this.usersForm.get(controlName)?.invalid &&
       (this.usersForm.get(controlName)?.touched ||
-        this.usersForm.get('text')?.dirty)
+        this.usersForm.get(controlName)?.dirty)
     );
   }
 

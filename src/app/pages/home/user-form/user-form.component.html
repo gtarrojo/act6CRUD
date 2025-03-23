@@ -8,43 +8,43 @@
         <div class="card-body">
           <form [formGroup]="usersForm" (ngSubmit)="submit()">
             <div class="mb-3">
-              <label for="nombre" class="form-label">Nombre</label>
+              <label for="first_name" class="form-label">Nombre</label>
               <input
                 type="text"
                 class="form-control"
-                id="nombre"
-                formControlName="nombre"
+                id="first_name"
+                formControlName="first_name"
                 placeholder="Introduce tu nombre"
-                [class.invalid]="checkControl('nombre')"
-                [class.valid]="checkValid('nombre')"
+                [class.invalid]="checkControl('first_name')"
+                [class.valid]="checkValid('first_name')"
               />
-              @if (checkCurrentError("nombre", "required")) {
+              @if (checkCurrentError("first_name", "required")) {
               <p class="error">El campo es requerido.</p>
-              }@if (checkCurrentError("nombre", "minlength")) {
+              }@if (checkCurrentError("first_name", "minlength")) {
               <p class="error">
                 El nombre debe tener dos carácteres como mínimo.
               </p>
-              } @if (checkCurrentError("nombre", "maxlength")) {
+              } @if (checkCurrentError("first_name", "maxlength")) {
               <p class="error">El nombre excede el máximo de carácteres.</p>
               }
             </div>
 
             <div class="mb-3">
-              <label for="apellidos" class="form-label">Apellidos</label>
+              <label for="last_name" class="form-label">Apellidos</label>
               <input
                 type="text"
                 class="form-control"
-                id="apellidos"
-                formControlName="apellidos"
+                id="last_name"
+                formControlName="last_name"
                 placeholder="Introduce tus apellidos"
-                [class.invalid]="checkControl('apellidos')"
-                [class.valid]="checkValid('apellidos')"
+                [class.invalid]="checkControl('last_name')"
+                [class.valid]="checkValid('last_name')"
               />
-              @if (checkCurrentError("apellidos", "required")) {
+              @if (checkCurrentError("last_name", "required")) {
               <p class="error">El campo es requerido.</p>
-              }@if (checkCurrentError("apellidos", "minlength")) {
+              }@if (checkCurrentError("last_name", "minlength")) {
               <p class="error">Mínimo de 2 carácteres</p>
-              } @if (checkCurrentError("nombre", "maxlength")) {
+              } @if (checkCurrentError("last_name", "maxlength")) {
               <p class="error">
                 Los apellidos exceden el máximo de carácteres.
               </p>
@@ -70,15 +70,15 @@
             </div>
 
             <div class="mb-3">
-              <label for="imagen" class="form-label">Imagen</label>
+              <label for="image" class="form-label">Imagen</label>
               <input
                 type="text"
                 class="form-control"
-                id="imagen"
-                formControlName="imagen"
+                id="image"
+                formControlName="image"
                 placeholder="Introduce una URL de imagen"
-                [class.invalid]="checkControl('imagen')"
-                [class.valid]="checkValid('imagen')"
+                [class.invalid]="checkControl('image')"
+                [class.valid]="checkValid('image')"
               />
               @if (checkCurrentError("image", "required")) {
               <p class="error">El campo es requerido.</p>
