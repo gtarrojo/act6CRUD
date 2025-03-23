@@ -3,6 +3,7 @@ import { IUser } from '../../../interfaces/iuser.interface';
 import { UsersService } from '../../../services/users.service';
 import { IResponse } from '../../../interfaces/iresponse.interface';
 import { UserCardComponent } from '../../../components/user-card/user-card.component';
+import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-users-list',
@@ -38,9 +39,8 @@ export class UsersListComponent {
         response.total === this.arrUsers.length ? true : false;
 
       this.currentPage++;
-    } catch (error: unknown) {
-      console.log(error);
-      alert('Vuelva a intentarlo en unos minutos.');
+    } catch (msg: any) {
+      toast.error(msg.error);
     }
   }
 }

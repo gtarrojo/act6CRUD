@@ -33,6 +33,7 @@ export class ButtonsComponent {
         onClick: async () => {
           await this.usersService.deleteById(id);
           this.router.navigate(['/dashboard', 'empleados']);
+          toast.success('Borrado!');
         },
       },
       cancel: {
