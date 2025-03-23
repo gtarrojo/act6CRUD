@@ -31,8 +31,7 @@ export class UsersService {
     const url = this.endPoint + '/' + id;
     return lastValueFrom(this.httpClient.put<IUser>(url, body));
   }
-  register(id: string, body: any): Promise<IUser> {
-    const url = this.endPoint + '/' + id;
-    return lastValueFrom(this.httpClient.post<IUser>(url, body));
+  register(body: any): Promise<IUser> {
+    return lastValueFrom(this.httpClient.post<IUser>(this.endPoint, body));
   }
 }
