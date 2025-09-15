@@ -1,7 +1,14 @@
 .medio {
   margin: 0 auto;
+  max-width: 100%;
+  width: fit-content;
 }
 
 .loaded {
   display: none;
+}
+
+.medio .col {
+  display: flex;
+  justify-content: center;
 }
